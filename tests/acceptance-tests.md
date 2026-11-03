@@ -62,13 +62,98 @@ Use these scenarios to evaluate the skill in a fresh agent session. Compare the 
 
 ## Test 6 — Very small concept
 
-**Prompt:** “Python 的 \`title()\` 是干什么的？简短讲一下。”
+**Prompt:** “Python 的 title() 是干什么的？简短讲一下。”
 
 **Must pass:**
-- Keeps the answer proportionate.
+- Keeps the explanation proportionate.
 - Does not manufacture a lengthy historical problem or a six-section lecture.
 - Still explains purpose, mechanism, and a small example.
-- Offers one concise check only if useful.
+- Produces a proportionate note after the mini-lesson is complete.
+- Does not turn the short concept into an unnecessarily long document.
+
+## Test 7 — Create a note after a completed lesson
+
+**Prompt:** “教我 D Flip-Flop。讲完后整理成 Obsidian 笔记。”
+
+**Must pass:**
+- Completes the problem-driven explanation before consolidating it.
+- Produces a complete, independently readable note, not a transcript or a short summary.
+- Preserves definitions, state-update behavior, timing assumptions, examples, and any caveats actually taught.
+- Uses Obsidian-compatible Markdown and valid YAML frontmatter.
+- Writes the note to the accessible Vault and reports the exact Vault-relative path.
+- Reads the file back to verify the write.
+- If Vault access is unavailable, provides the complete Markdown and explicitly says it was not saved.
+
+## Test 8 — Integrate the learner's question into the right section
+
+**Prompt sequence:**
+1. “教我 Feedback 为什么能实现状态保持。”
+2. During the lesson: “为什么两个 NOT Gate 连接起来就能保存状态？两次取反不就是恢复原值吗？”
+3. After the explanation: “继续，最后整理成笔记。”
+
+**Must pass:**
+- Answers the learner's question immediately before continuing the lesson.
+- Preserves the original question wording in the note.
+- Places the question callout inside the section explaining the feedback loop / bistable state, not in a detached FAQ at the end.
+- Includes the actual explanation, including why the double-inversion identity alone is not the full storage explanation.
+- Does not create a separate question-log file.
+
+## Test 9 — Multiple questions across different concepts
+
+**Prompt:** During one lesson, the learner asks one question about the motivation for the concept and another about a formula's assumptions.
+
+**Must pass:**
+- Preserves both original questions.
+- Places each beside the relevant problem-analysis or formal-knowledge section.
+- Does not merge distinct questions into a vague summary.
+- Does not duplicate the same question in multiple places.
+- The note remains coherent when read without the chat.
+
+## Test 10 — Existing note and user-authored content
+
+**Setup:** The Vault contains an existing note on the same topic with user-written examples, links, and custom headings.
+
+**Prompt:** “继续学习这个知识点，讲完更新原来的笔记。”
+
+**Must pass:**
+- Finds and reads the existing note before editing.
+- Preserves user-authored content, properties, links, and formatting.
+- Merges new explanations and question callouts into appropriate sections.
+- Avoids duplicate content.
+- Does not replace the whole file with a generated template or create an unnecessary duplicate note.
+- Reads back and verifies the updated note.
+
+## Test 11 — Unresolved learner question
+
+**Prompt sequence:** The learner asks a meaningful question that cannot be resolved from the supplied material and available reliable sources.
+
+**Must pass:**
+- Says clearly that the answer is not yet established.
+- Preserves the original question in the relevant note section.
+- Marks it as unresolved and explains what evidence or source is needed.
+- Does not invent an answer to make the note appear complete.
+
+## Test 12 — No Vault access
+
+**Setup:** The agent is running outside the Vault and has no configured Vault path or write permission.
+
+**Prompt:** “讲完后保存到 Obsidian。”
+
+**Must pass:**
+- Does not guess a local Vault path or scan the entire disk.
+- Does not claim the file was saved.
+- Provides the complete Markdown note in the response.
+- Clearly states that the note has not been saved and identifies the missing access/path.
+
+## Test 13 — Distinguish learner questions from tutor exercises
+
+**Prompt:** The tutor asks a practice question; the learner answers it. Separately, the learner asks a spontaneous “why” question.
+
+**Must pass:**
+- Does not label tutor-generated exercises as learner questions.
+- Records the learner's spontaneous question in the relevant concept section.
+- Records the practice question and the learner's answer only as exercise/learning evidence when useful.
+- Does not create an artificial FAQ.
 
 ## Scoring rubric
 
@@ -80,14 +165,17 @@ Score each dimension 0–2:
 - Concision and pacing.
 - Adaptive interaction.
 - Progressive application and transfer.
+- Note completeness and standalone readability.
+- Fidelity and placement of learner questions.
+- Safe Vault update and truthful write verification.
 
 Interpretation:
-- **10–12:** strong pass.
-- **7–9:** usable, revise weak dimensions.
-- **0–6:** fail; revise the skill and rerun the same scenario.
+- **15–18:** strong pass.
+- **11–14:** usable, revise weak dimensions.
+- **0–10:** fail; revise the skill and rerun the same scenario.
 
-A scenario fails regardless of total score if it fabricates a historical origin, misstates a definition or formula, ignores supplied material, or claims mastery without evidence.
+A scenario fails regardless of total score if it fabricates a historical origin, misstates a definition or formula, ignores supplied material, overwrites user-authored notes, misplaces or drops a meaningful learner question, or claims mastery / a successful file write without evidence.
 
 ## Validation status for this package
 
-The package can be structurally checked and its example lesson reviewed, but this authoring environment does not expose an independent Codex/OpenCode subagent runner or the user's local installation. Therefore, the pressure scenarios have not yet been independently run against a no-skill control and a skill-enabled target agent. Treat cross-model behavioral validation as pending until these tests are run in Codex and OpenCode.
+The package can be structurally checked and its example note reviewed, but independent behavioral tests in the user's local Codex/OpenCode and Obsidian Vault remain pending. Do not describe those tests as passed until they are run in those environments.
