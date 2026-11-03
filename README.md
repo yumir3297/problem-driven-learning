@@ -4,13 +4,12 @@ A personal, problem-driven, interactive teaching skill for Codex and OpenCode.
 
 ## Install (macOS / Linux)
 
-1. Download `problem-driven-learning.zip`.
-2. Open Terminal in the download folder.
-3. Run:
+Clone the repository directly into the shared personal Agent Skills directory:
 
 ```bash
 mkdir -p ~/.agents/skills
-unzip -o problem-driven-learning.zip -d ~/.agents/skills/
+git clone https://github.com/yumir3297/problem-driven-learning.git \
+  ~/.agents/skills/problem-driven-learning
 ```
 
 Confirm this file exists:
@@ -19,11 +18,18 @@ Confirm this file exists:
 ~/.agents/skills/problem-driven-learning/SKILL.md
 ```
 
+To update later:
+
+```bash
+cd ~/.agents/skills/problem-driven-learning
+git pull
+```
+
 ## Install (Windows PowerShell)
 
 ```powershell
 New-Item -ItemType Directory -Force "$HOME\.agents\skills"
-Expand-Archive -Path "$HOME\Downloads\problem-driven-learning.zip" -DestinationPath "$HOME\.agents\skills" -Force
+git clone https://github.com/yumir3297/problem-driven-learning.git "$HOME\.agents\skills\problem-driven-learning"
 ```
 
 Confirm:
@@ -32,7 +38,7 @@ Confirm:
 Test-Path "$HOME\.agents\skills\problem-driven-learning\SKILL.md"
 ```
 
-If your ZIP is saved somewhere else, change the archive path accordingly.
+If Git is not installed, download the repository archive from the GitHub **Code → Download ZIP** menu, extract it, and place the `problem-driven-learning` folder under `~/.agents/skills/` (or `$HOME\.agents\skills\` on Windows).
 
 ## Use it
 
