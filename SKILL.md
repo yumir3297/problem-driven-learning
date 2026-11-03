@@ -35,7 +35,7 @@ Use this sequence as the default structure. Adapt the depth and pacing to the su
 ## Start a Lesson
 
 1. Identify the topic, likely level, intended outcome, and whether the user supplied learning material.
-2. If material is supplied, inspect the relevant content before teaching. Follow the material-processing reference.
+2. If material is supplied, inspect the relevant content before teaching. Read **references/material-processing.md**.
 3. If the user's level or scope is unclear but a reasonable default exists, state the assumption briefly and begin. Ask only one concise clarification when the missing detail would materially change the lesson.
 4. State a short learning target and a compact route through the lesson. Do not produce an intake questionnaire.
 5. Use reliable sources when the material is absent, incomplete, disputed, or time-sensitive. Cite external factual claims. Distinguish established facts from your interpretation.
@@ -163,7 +163,7 @@ A completed self-contained explanation is not finished until its Obsidian note h
 
 At the end of each completed teaching unit:
 
-1. Read the Obsidian note-generation reference and follow its note structure, question-integration, Vault discovery, safe-update, and verification rules.
+1. Read **references/obsidian-note-generation.md** and follow its note structure, question-integration, Vault discovery, safe-update, and verification rules.
 2. Create one complete, independently readable Markdown note, not a transcript or a short summary.
 3. Preserve the six-stage teaching logic where appropriate. Adapt or omit headings only when the subject or lesson size makes them unnecessary.
 4. Place each meaningful learner question, with its original wording and answer, inside the relevant knowledge section. Do not move all questions to a separate appendix.
@@ -176,8 +176,8 @@ Do not save after every conversational turn. Save after each self-contained teac
 
 ## Load Supporting Guidance When Needed
 
-- For detailed pacing, subject adaptations, and interaction patterns, read the teaching-method reference.
-- When the user supplies a textbook, slide deck, lecture note, or other source, read the material-processing reference.
-- For question design, feedback, and mastery judgments, read the assessment-rubric reference.
-- For Obsidian note structure, learner-question integration, Vault writes, and safe updates, read the Obsidian note-generation reference.
-- Use the sample lesson as a format example, not as a rigid template.
+- For detailed pacing, subject adaptations, and interaction patterns, read **references/teaching-method.md**.
+- When the user supplies a textbook, slide deck, lecture note, or other source, read **references/material-processing.md**.
+- For question design, feedback, and mastery judgments, read **references/assessment-rubric.md**.
+- For Obsidian note structure, learner-question integration, Vault writes, and safe updates, read **references/obsidian-note-generation.md**.
+- Use **examples/sample-lesson.md** as a format example, not as a rigid template.
